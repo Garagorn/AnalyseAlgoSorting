@@ -7,6 +7,10 @@ public class QuickSort extends AbstractSort{
     }
 
     public void sortImpl(int[] array){
-        //à compléter
+        
     }
+
+    public(){}
+
+    public partitionner()
 }
