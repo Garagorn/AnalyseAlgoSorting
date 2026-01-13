@@ -14,9 +14,6 @@ public class QuickSort extends AbstractSort{
 
     @Override
     public void sortImpl(int[] array){
-<<<<<<< HEAD
-        
-=======
         quicksort(array,0,array.length-1);
     }
 
@@ -41,10 +38,5 @@ public class QuickSort extends AbstractSort{
             quicksort(data,premier,pivot-1);
             quicksort(data,pivot+1,dernier);
         }
->>>>>>> quicksort
     }
-
-    public(){}
-
-    public partitionner()
 }
