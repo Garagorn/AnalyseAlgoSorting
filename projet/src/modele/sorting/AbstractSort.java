@@ -6,7 +6,7 @@ public abstract class AbstractSort implements Sort{
     protected int nbrComparisons;
     protected int nbrAccesses;
     protected int nbrSwaps;
-    protected double timeNano;
+    protected long timeNano;
 
 
     public AbstractSort(){
@@ -46,12 +46,12 @@ public abstract class AbstractSort implements Sort{
     }
 
     protected boolean isLess(int a, int b) {
-        comparisons++;
+        this.nbrComparisons++;
         return a < b;
     }
 
     protected void swap(int[] array, int i, int j) {
-        swaps++;
+        this.nbrSwaps++;
         int tmp = read(array, i);
         write(array, i, read(array, j));
         write(array, j, tmp);
@@ -68,16 +68,16 @@ public abstract class AbstractSort implements Sort{
 
     @Override
     public int getNbrAccesses(){
-        return this.getNbrAccesses;
+        return this.nbrAccesses;
     }
 
     @Override
-    public int gatNbrSwaps(){
+    public int getNbrSwaps(){
         return this.nbrSwaps;
     }
 
     @Override
-    public double getTimeNano(){
+    public long getTimeNano(){
         return this.timeNano;
     }
 

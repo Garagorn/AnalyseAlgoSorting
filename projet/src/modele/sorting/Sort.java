@@ -8,6 +8,6 @@ public interface Sort {
     String getName();
     int getNbrComparisons();
     int getNbrAccesses();
-    int gatNbrSwaps();
-    double getTimeNano();
+    int getNbrSwaps();
+    long getTimeNano();
 }
