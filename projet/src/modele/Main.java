@@ -13,7 +13,7 @@ public class Main{
             System.out.println("tab["+i+"] : " + tab[i]);
         }
 
-        Sort s = new QuickSort();
+        Sort s = new CountingSort();
         s.sort(tab);
         System.out.println("==================================");
         System.out.println("après le tri");
