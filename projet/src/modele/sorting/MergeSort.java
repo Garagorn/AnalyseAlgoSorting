@@ -2,12 +2,13 @@ package modele.sorting;
 
 public class MergeSort extends AbstractSort{
 
-    public MergeSort(){
-        super();
+    @Override
+    public String getName() {
+        return "Merge Sort";
     }
 
-    public void sortImpl(int[] array){
-        //à compléter
+    @Override
+    protected void sortImpl(int[] array) {
     }
     
 }

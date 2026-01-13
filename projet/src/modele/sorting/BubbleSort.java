@@ -3,11 +3,16 @@ package modele.sorting;
 
 public class BubbleSort extends AbstractSort{
     
-    public BubbleSort(){
-        super();
+    @Override
+    public String getName() {
+        return "Bubble Sort";
     }
 
-    public void sortImpl(int[] array){
-        //à compléter
+    @Override
+    protected void sortImpl(int[] array) {
+        
+    }
+    public BubbleSort(){
+        super();
     }
 }
