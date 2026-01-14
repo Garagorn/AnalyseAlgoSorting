@@ -54,5 +54,19 @@ public class Main{
         System.out.println("nombre de comparaison : "+in.getNbrComparisons());
         System.out.println("nombre de swaps : "+in.getNbrSwaps());
         System.out.println("temps passé : "+in.getTimeNano()+" ns");
+        /**
+         * InsertionSort
+         */
+        Sort b = new InsertionSort();
+        b.sort(tab);
+        System.out.println("=================BubbleSort=================");
+        System.out.println("après le tri");
+        for(int i = 0 ; i < tab.length; i++){
+            System.out.println("tab["+i+"] : " + tab[i]);
+        }
+        System.out.println("nombre d'accès : "+b.getNbrAccesses());
+        System.out.println("nombre de comparaison : "+b.getNbrComparisons());
+        System.out.println("nombre de swaps : "+b.getNbrSwaps());
+        System.out.println("temps passé : "+b.getTimeNano()+" ns");
     }
 }
