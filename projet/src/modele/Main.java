@@ -1,72 +1,81 @@
 package modele;
+
+import java.util.*;
+
+import generateur.generator;
 import modele.sorting.*;
+import sorting.Resultat;
+import analyseur.Analyseur;
 
 public class Main{
 
 
     public static void main(String[] args){
-        int[] tab = {16,8,-7,9,3,1,23,4};
-
-        System.out.println("avant le tri");
-
-        for(int i = 0 ; i < tab.length; i++){
-            System.out.println("tab["+i+"] : " + tab[i]);
-        }
+        /*
+        Scanner scanner = new Scanner(System.in);        
+        
+        System.out.println("Taille de la liste à trier : ");
+        int taille = scanner.nextInt();
+        
+        System.out.println("Nombre de desordre : ");
+        int desordre = scanner.nextInt();
+        
+        System.out.println("Type de desordre (1-Aleatoire) (2-Debut) (3-Milieu) (4-Fin) : ");
+        int typeDesordre = scanner.nextInt();
+        
+        int[] tabOriginal = generator.tabgenerersimple(taille, desordre, typeDesordre);
+        */
+        int taille = 150;
+        int desordre = 50;
+        int typeDesordre = 1;
+        int[] tabOriginal = generator.tabgenerersimple(150, 50, 1);
+        List<Resultat> resultats = new ArrayList<>();
+        
         /**
          * CountingSort
          */
+        int[] tabCopie1 = Arrays.copyOf(tabOriginal, tabOriginal.length);
         Sort s = new CountingSort();
-        s.sort(tab);
-        System.out.println("===============CountingSort===================");
-        System.out.println("après le tri");
-        for(int i = 0 ; i < tab.length; i++){
-            System.out.println("tab["+i+"] : " + tab[i]);
-        }
-        System.out.println("nombre d'accès : "+s.getNbrAccesses());
-        System.out.println("nombre de comparaison : "+s.getNbrComparisons());
-        System.out.println("nombre de swaps : "+s.getNbrSwaps());
-        System.out.println("temps passé : "+s.getTimeNano()+" ns");
+        s.sort(tabCopie1);
+        //Verification tri
+        resultats.add(new Resultat(s.getName(),taille,desordre,typeDesordre,s.getNbrAccesses(),s.getNbrComparisons(), s.getNbrSwaps(),s.getTimeNano()));
+        
         /**
          * QuickSort
          */
+        int[] tabCopie2 = Arrays.copyOf(tabOriginal, tabOriginal.length);
         Sort q = new QuickSort();
-        q.sort(tab);
-        System.out.println("=================QuickSort=================");
-        System.out.println("après le tri");
-        for(int i = 0 ; i < tab.length; i++){
-            System.out.println("tab["+i+"] : " + tab[i]);
-        }
-        System.out.println("nombre d'accès : "+q.getNbrAccesses());
-        System.out.println("nombre de comparaison : "+q.getNbrComparisons());
-        System.out.println("nombre de swaps : "+q.getNbrSwaps());
-        System.out.println("temps passé : "+q.getTimeNano()+" ns");
+        q.sort(tabCopie2);
+        //Verification tri
+        resultats.add(new Resultat(q.getName(),taille,desordre,typeDesordre,q.getNbrAccesses(),q.getNbrComparisons(), q.getNbrSwaps(),q.getTimeNano()));
         /**
          * InsertionSort
          */
+        int[] tabCopie3 = Arrays.copyOf(tabOriginal, tabOriginal.length);
         Sort in = new InsertionSort();
-        in.sort(tab);
-        System.out.println("=================InsertionSort=================");
-        System.out.println("après le tri");
-        for(int i = 0 ; i < tab.length; i++){
-            System.out.println("tab["+i+"] : " + tab[i]);
-        }
-        System.out.println("nombre d'accès : "+in.getNbrAccesses());
-        System.out.println("nombre de comparaison : "+in.getNbrComparisons());
-        System.out.println("nombre de swaps : "+in.getNbrSwaps());
-        System.out.println("temps passé : "+in.getTimeNano()+" ns");
+        in.sort(tabCopie3);
+        //Verification tri
+        resultats.add(new Resultat(in.getName(),taille,desordre,typeDesordre,in.getNbrAccesses(),in.getNbrComparisons(), in.getNbrSwaps(),in.getTimeNano()));
+
         /**
-         * InsertionSort
+         * BubbleSort
          */
-        Sort b = new InsertionSort();
-        b.sort(tab);
-        System.out.println("=================BubbleSort=================");
-        System.out.println("après le tri");
-        for(int i = 0 ; i < tab.length; i++){
-            System.out.println("tab["+i+"] : " + tab[i]);
-        }
-        System.out.println("nombre d'accès : "+b.getNbrAccesses());
-        System.out.println("nombre de comparaison : "+b.getNbrComparisons());
-        System.out.println("nombre de swaps : "+b.getNbrSwaps());
-        System.out.println("temps passé : "+b.getTimeNano()+" ns");
+        int[] tabCopie4 = Arrays.copyOf(tabOriginal, tabOriginal.length);
+        Sort b = new BubbleSort();
+        b.sort(tabCopie4);
+        //Verification tri
+        resultats.add(new Resultat(b.getName(),taille,desordre,typeDesordre,b.getNbrAccesses(),b.getNbrComparisons(), b.getNbrSwaps(),b.getTimeNano()));
+        /**
+         * MergeSort
+        int[] tabCopie5 = Arrays.copyOf(tabOriginal, tabOriginal.length);
+        Sort m = new InsertionSort();
+        m.sort(tabCopie5);
+        //Verification tri
+        resultats.add(new Resultat(m.getName(),taille,desordre,typeDesordre,m.getNbrAccesses(),m.getNbrComparisons(), m.getNbrSwaps(),m.getTimeNano()));
+        */
+        
+        
+        Analyseur analyse=new Analyseur(resultats);
+        System.out.println(analyse);
     }
 }
