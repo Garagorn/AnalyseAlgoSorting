@@ -1,5 +1,5 @@
 package analyseur;
-import java.util.List;
+import java.util.*;
 import sorting.Resultat;
 
 /**
@@ -10,19 +10,29 @@ public class Analyseur{
     private List<Resultat> resultats;
     
     /**
-     * 
+     * Constructeur de la classe
      * @param resultats 
      */
     public Analyseur(List<Resultat> resultats){
-        this.resultats= resultats;
+        this.resultats = resultats != null ? resultats : new ArrayList<>();
     }
 
     /**
-     * 
-     * @return 
+     * Getter de la liste de résultat
+     * @return List<Resultat>
      */
     public List<Resultat> getResultats() {
         return resultats;
+    }
+
+    /**
+     * @author siaghi231
+     * Ajoute un résultat à la liste.
+     * 
+     * @param resultat résultat à ajouter
+     */
+    public void ajouterResultat(Resultat resultat) {
+        this.resultats.add(resultat);
     }
 
     /**
@@ -33,16 +43,7 @@ public class Analyseur{
         this.resultats = resultats;
     }
     
-    //Meilleur Acces
-    
-    //Meilleur Comparaisons
-    
-    //Meilleur Swaps
-    
-    //Meilleur Temps 
-
     /**
-     *
      * @return
      */
     @Override
