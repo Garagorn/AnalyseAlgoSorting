@@ -19,17 +19,19 @@ public class Resultat {
     private long temps;
 
     /**
+     * Constructeur de Resultat
      * 
-     * @param nomAlgo
-     * @param tailleTab
-     * @param desordre
-     * @param typeDesordre
-     * @param nbComparaisons
-     * @param nbAcces
-     * @param nbSwap
-     * @param temps 
+     * @param nomAlgo nom de l'algorithme
+     * @param tailleTab taille du tableau trié
+     * @param desordre niveau de désordre (0.0 à 1.0)
+     * @param typeDesordre type de désordre/pattern
+     * @param nbComparaisons nombre de comparaisons effectuées
+     * @param nbAcces nombre d'accès mémoire
+     * @param nbSwap nombre d'échanges
+     * @param temps temps d'exécution en nanosecondes
      */
-    public Resultat(String nomAlgo, int tailleTab, int desordre, int typeDesordre, int nbComparaisons, int nbAcces, int nbSwap, long temps) {
+    public Resultat(String nomAlgo, int tailleTab, int desordre,
+                    int typeDesordre, int nbComparaisons, int nbAcces, int nbSwap, long temps) {
         this.nomAlgo = nomAlgo;
         this.tailleTab = tailleTab;
         this.desordre = desordre;
@@ -75,6 +77,25 @@ public class Resultat {
     }
 
     /**
+     * @author siaghi231
+     * Retourne le temps en millisecondes.
+     * 
+     * @return temps en millisecondes
+     */
+    public double getTempsMs() {
+        return temps / 1_000_000.0;
+    }
+    /**
+     * @author siaghi231
+     * Retourne le temps en microsecondes.
+     * 
+     * @return temps en microsecondes
+     */
+    public double getTempsMicros() {
+        return temps / 1_000.0;
+    }
+
+    /**
      * Obtenir le nombre de comparaisons de l'algo
      * @return Int NbComparaisons
      */
@@ -106,5 +127,18 @@ public class Resultat {
         return temps;
     }
     
+    /**
+     * @author siaghi231
+     * Retourne une représentation formatée du résultat.
+     * 
+     * @return chaîne formatée avec les métriques
+     */
+    @Override
+    public String toString() {
+        return String.format(
+            "%-15s | Comp: %,10d | Accès: %,10d | Swaps: %,8d | Temps: %,8.3f ms",
+            nomAlgo, nbComparaisons, nbAcces, nbSwap, getTempsMs()
+        );
+    }
     
 }
