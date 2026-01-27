@@ -1,0 +1,126 @@
+\documentclass[10pt]{beamer}
+\setbeamertemplate{navigation symbols}{\insertframenumber}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}%paquet de langue français%
+\usepackage[french]{babel}%encodage de la police%
+
+\usepackage{graphicx} %'affichage des images
+\usepackage{enotez}
+
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{array,multirow,makecell}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\usepackage{hyperref}
+
+\definecolor{codegreen}{named}{green}
+\definecolor{codered}{named}{red}
+\definecolor{codeblue}{named}{blue}
+\definecolor{codeblack}{named}{black}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{codeblue},
+    numberstyle=\tiny\color{codeblack},
+    stringstyle=\color{codered},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=2pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=1
+}
+
+\lstset{style=mystyle}
+\usepackage[linesnumbered,ruled,french,onelanguage]{algorithm2e}
+
+\makeatletter
+\g@addto@macro{\@algocf@init}{\SetKwInput{KwOut}{Sortie}}
+\makeatother
+
+
+\author{Thomas Matthieu, Tellier Basile, Marie Vianney, Siaghi Massinissa}
+\date{\today}
+\title{Analyse des algorithmes de tri}
+\usetheme{Warsaw}
+
+\setlength{\algomargin}{1em}
+\begin{document}
+
+\begin{frame}
+\maketitle
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Table des matières}
+\tableofcontents
+\end{frame}
+
+
+\begin{frame}
+\section{Présentation du projet}
+Objectif du Projet : 
+  \begin{itemize}
+      \item <1-> Generateur de données 
+      \begin{itemize}
+        \item Generateur de liste
+        \item Gestion du désordre
+      \end{itemize}   
+      \item <2-> Algorithme de tri 
+      \begin{itemize}
+        \item Merge Sort
+        \item Counting Sort
+        \item Insertion Sort
+        \item Bubble Sort 
+        \item Quick Sort 
+      \end{itemize}
+      \item <3-> Analyse des résulat
+        \begin{itemize}
+          \item Comparaison des algo 
+          \item Difference en fonction du pourcentage de désorde 
+          \item Difference en fonction du type de désordre 
+        \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\section{Avancement du projet}
+  \begin{itemize}
+    \item <1-> Generateur de données 
+    \item <2-> Algorithme de tri 
+    \item <3-> Analyse des résulat
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\section{Futur du projet}
+  \begin{itemize}
+    \item Interface graphique 
+    \begin {itemize}
+      \item Fonctionnement des algo 
+      \item Analyse des algo 
+    \end{itemize}
+    \item Utilisation d'un script shell pour lancement du processus 
+    \item Benchmark 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\section{Sources}
+  Algorithmes de tri : \url{https://www.geeksforgeeks.org/dsa/sorting-algorithms/}
+  \newline
+\end{frame}
+
+\end{document}
