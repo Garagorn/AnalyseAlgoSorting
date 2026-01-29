@@ -22,6 +22,13 @@ public class generator{
         int res =taille*(1-pourcentagealeatoire/100);
         return res;
     }
+
+    //Pour utillliser sur la version actuelle de tabgenerersiiiiimple
+    public static int[] tabgenererPourcentage(int taille, int pourcentageDesordre, int typeDesordre) {
+        int nombreAleatoire = (taille * pourcentageDesordre) / 100;
+        return tabgenerersimple(taille, nombreAleatoire, typeDesordre);
+    }
+
     public static int[] tabgenerersimple(int taille,int nombrealeatoire,int desordre){
         int[] tab =new int[taille];
         Random rand = new Random();

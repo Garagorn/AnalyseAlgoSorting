@@ -30,6 +30,6 @@ public class BubbleSort extends AbstractSort{
 
     @Override
     public String getName() {
-        return "Bubble Sort";
+        return "BubbleSort";
     }
 }

@@ -29,7 +29,7 @@ public class MergeSort extends AbstractSort {
     
     @Override
     public String getName() {
-        return "Merge Sort";
+        return "MergeSort";
     }
     
     @Override

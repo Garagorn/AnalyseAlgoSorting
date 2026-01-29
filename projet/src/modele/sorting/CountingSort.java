@@ -4,7 +4,7 @@ public class CountingSort extends AbstractSort {
 
     @Override
     public String getName() {
-        return "Counting Sort";
+        return "CountingSort";
     }
 
     @Override

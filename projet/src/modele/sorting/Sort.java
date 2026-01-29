@@ -6,8 +6,8 @@ public interface Sort {
     void sort(int[] array);
 
     String getName();
-    int getNbrComparisons();
-    int getNbrAccesses();
-    int getNbrSwaps();
+    long getNbrComparisons();
+    long getNbrAccesses();
+    long getNbrSwaps();
     long getTimeNano();
 }
