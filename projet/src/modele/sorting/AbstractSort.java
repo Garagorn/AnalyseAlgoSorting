@@ -80,10 +80,4 @@ public abstract class AbstractSort implements Sort{
     public long getTimeNano(){
         return this.timeNano;
     }
-
-
-
-
-
-
 }
