@@ -1,4 +1,4 @@
-package modele.sorting;
+package sorting;
 
 public class InsertionSort extends AbstractSort{
 

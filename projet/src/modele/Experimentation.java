@@ -1,11 +1,11 @@
-import generateur.generator;
-import modele.sorting.*;
+import generateur.Generator;
+import sorting.*;
 import java.util.*;
 /**
  *
  * @author tellier212
  */
-public class MainTest {
+public class Experimentation {
     
     private static boolean isSorted(int[] tab){
         for(int i = 0; i < tab.length - 1; i++){
@@ -31,7 +31,7 @@ public class MainTest {
         int pourcentage = Integer.parseInt(args[1]);
         int typeDesordre = Integer.parseInt(args[2]);
 
-        int[] tab = generator.tabgenererPourcentage(taille,pourcentage,typeDesordre);
+        int[] tab = Generator.generateurTab(taille,pourcentage,typeDesordre);
         
         // - - - Tris du tableau - - -
         /**

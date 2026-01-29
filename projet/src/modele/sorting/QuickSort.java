@@ -1,4 +1,4 @@
-package modele.sorting;
+package sorting;
 import java.util.Random;
 
 public class QuickSort extends AbstractSort{

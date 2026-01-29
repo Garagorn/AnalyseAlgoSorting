@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.1.9)  27 JAN 2026 15:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.15)  29 JAN 2026 18:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -716,9 +716,9 @@ LaTeX Info: Redefining \textlatin on input line 3986.
 (/usr/share/texlive/texmf-dist/tex/generic/babel-french/french.ldf
 Language: french 2023-12-19 v3.5r French support from the babel system
 Package babel Info: Hyphen rules for 'acadian' set to \l@french
-(babel)             (\language80). Reported on input line 91.
+(babel)             (\language28). Reported on input line 91.
 Package babel Info: Hyphen rules for 'canadien' set to \l@french
-(babel)             (\language80). Reported on input line 92.
+(babel)             (\language28). Reported on input line 92.
 \FB@stdchar=\count338
 Package babel Info: Making : an active character on input line 420.
 Package babel Info: Making ; an active character on input line 421.
@@ -1096,9 +1096,10 @@ Overfull \hbox (12.94598pt too wide) has occurred while \output is active
  [][]  
  []
 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/en
+c/dvips/cm-super/cm-super-t1.enc}
 
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
+]
 Overfull \hbox (12.94598pt too wide) in paragraph at lines 67--67
  [][]  
  []
@@ -1111,7 +1112,7 @@ Overfull \hbox (12.94598pt too wide) has occurred while \output is active
 [2
 
 ]
-Overfull \hbox (12.94598pt too wide) in paragraph at lines 93--93
+Overfull \hbox (12.94598pt too wide) in paragraph at lines 98--98
  [][]  
  []
 
@@ -1137,15 +1138,6 @@ Overfull \hbox (12.94598pt too wide) has occurred while \output is active
 [5
 
 ]
-Overfull \hbox (12.94598pt too wide) in paragraph at lines 115--115
- [][]  
- []
-
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-15.
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)
 Overfull \hbox (12.94598pt too wide) has occurred while \output is active
  [][]  
  []
@@ -1153,6 +1145,15 @@ Overfull \hbox (12.94598pt too wide) has occurred while \output is active
 [6
 
 ]
+Overfull \hbox (12.94598pt too wide) in paragraph at lines 125--125
+ [][]  
+ []
+
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
+25.
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
 Overfull \hbox (12.94598pt too wide) has occurred while \output is active
  [][]  
  []
@@ -1167,7 +1168,14 @@ Overfull \hbox (12.94598pt too wide) has occurred while \output is active
 [8
 
 ]
-Overfull \hbox (12.94598pt too wide) in paragraph at lines 133--133
+Overfull \hbox (12.94598pt too wide) has occurred while \output is active
+ [][]  
+ []
+
+[9
+
+]
+Overfull \hbox (12.94598pt too wide) in paragraph at lines 141--141
  [][]  
  []
 
@@ -1176,26 +1184,26 @@ Overfull \hbox (12.94598pt too wide) has occurred while \output is active
  [][]  
  []
 
-[9
+[10
 
 ]
-Overfull \hbox (12.94598pt too wide) in paragraph at lines 140--140
+Overfull \hbox (12.94598pt too wide) in paragraph at lines 148--148
  [][]  
  []
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 140
+LaTeX Font Info:    Trying to load font information for U+msa on input line 148
 .
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 140
+LaTeX Font Info:    Trying to load font information for U+msb on input line 148
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 140.
+ut line 148.
 
 (/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
@@ -1205,7 +1213,7 @@ Overfull \hbox (12.94598pt too wide) has occurred while \output is active
  [][]  
  []
 
-[10
+[11
 
 ]
 \tf@nav=\write6
@@ -1227,25 +1235,23 @@ ed.
 (rerunfilecheck)             Checksum: 94CCB04B0CCED7C4AA95FAAFA51E4722;513.
  ) 
 Here is how much of TeX's memory you used:
- 28313 strings out of 474222
- 551255 string characters out of 5748734
- 1936975 words of memory out of 5000000
+ 28315 strings out of 474222
+ 551274 string characters out of 5748732
+ 1938975 words of memory out of 5000000
  49995 multiletter control sequences out of 15000+600000
  567111 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,19n,123p,458b,790s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </home/thomas237/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900
-.600pk> </home/thomas237/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecs
-s0900.600pk> </home/thomas237/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/e
-c/ecss0700.600pk> </home/thomas237/.texlive2023/texmf-var/fonts/pk/ljfour/jknap
-pen/ec/ecss1440.600pk> </home/thomas237/.texlive2023/texmf-var/fonts/pk/ljfour/
-jknappen/ec/ecss0500.600pk> </home/thomas237/.texlive2023/texmf-var/fonts/pk/lj
-four/jknappen/ec/ecss0500.480pk></usr/share/texmf/fonts/type1/public/cm-super/s
-fss1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on Soutenance_milieux_projet.pdf (10 pages, 93213 bytes).
+</usr/share/texmf/fonts/type1/public/cm-super/sfss0500.pfb></usr/share/texmf/
+fonts/type1/public/cm-super/sfss0700.pfb></usr/share/texmf/fonts/type1/public/c
+m-super/sfss0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1000.pfb
+></usr/share/texmf/fonts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf/f
+onts/type1/public/cm-super/sftt0900.pfb></usr/share/texmf/fonts/type1/public/cm
+-super/sftt1000.pfb>
+Output written on Soutenance_milieux_projet.pdf (11 pages, 131201 bytes).
 PDF statistics:
- 355 PDF objects out of 1000 (max. 8388607)
+ 256 PDF objects out of 1000 (max. 8388607)
  173 compressed objects within 2 object streams
- 25 named destinations out of 1000 (max. 500000)
+ 27 named destinations out of 1000 (max. 500000)
  153 words of extra memory for PDF output out of 10000 (max. 10000000)
 

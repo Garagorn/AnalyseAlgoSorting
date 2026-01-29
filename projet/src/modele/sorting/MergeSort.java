@@ -1,4 +1,4 @@
-package modele.sorting;
+package sorting;
 
 /**
  * @author siaghi231

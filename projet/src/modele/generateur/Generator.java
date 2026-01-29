@@ -3,7 +3,6 @@ package generateur;
 import java.util.*;
 import java.util.Collections;
 import java.util.Random;
-import java.util.HashSet;
 
 public class Generator{
     private int taille;
@@ -16,7 +15,7 @@ public class Generator{
         this.pourcentageAleatoire = pourcentageAleatoire;
     }
     public static int getNombreAleatoire(int taille, int pourcentageAleatoire){
-        if(pourcentageAleatoire>100 || pourcentageAleatoire<=0){
+        if(pourcentageAleatoire>100 || pourcentageAleatoire<0){
             throw new IllegalArgumentException("illegal pourcentage");
         }
         int res =taille* pourcentageAleatoire/100;

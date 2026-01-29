@@ -38,8 +38,8 @@ for size in "${TAILLES[@]}"; do
 
             echo "[run] taille=$size pourcentage=$disorder desordre=$type"
             
-			java -cp ../build MainTest "$size" "$disorder" "$type" > test.txt || exit 1
-         
+			java -cp ../build Experimentation "$size" "$disorder" "$type" > test.txt || exit 1
+
             # Recupération sortie java
             grep '^\[csv\]' test.txt | while read -r line; do
                 # Apres la balise [csv]

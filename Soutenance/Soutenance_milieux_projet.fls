@@ -1,4 +1,4 @@
-PWD /home/thomas237/Documents/ProjetL3/Projet2/thomas-siaghi-marie-tellier/Soutenance
+PWD /home/eragon/Bureau/Université/L3/Projet 2/thomas-siaghi-marie-tellier/Soutenance
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
@@ -433,11 +433,10 @@ OUTPUT Soutenance_milieux_projet.snm
 INPUT Soutenance_milieux_projet.aux
 INPUT ./Soutenance_milieux_projet.out
 INPUT ./Soutenance_milieux_projet.out
-INPUT /home/thomas237/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk
-INPUT /home/thomas237/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0900.600pk
-INPUT /home/thomas237/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0700.600pk
-INPUT /home/thomas237/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1440.600pk
-INPUT /home/thomas237/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0500.600pk
-INPUT /home/thomas237/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0500.480pk
+INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfss0500.pfb
+INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfss0700.pfb
+INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfss0900.pfb
 INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfss1000.pfb
+INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfss1440.pfb
+INPUT /usr/share/texmf/fonts/type1/public/cm-super/sftt0900.pfb
 INPUT /usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb

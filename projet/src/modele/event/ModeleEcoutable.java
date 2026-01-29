@@ -1,5 +1,5 @@
 
-package  modele.event;
+package  event;
 
 interface ModeleEcoutable {
     void ajouterEcouteur(EcouteurModele e);

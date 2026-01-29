@@ -1,4 +1,4 @@
-package modele.sorting;
+package sorting;
 
 
 public abstract class AbstractSort implements Sort{
