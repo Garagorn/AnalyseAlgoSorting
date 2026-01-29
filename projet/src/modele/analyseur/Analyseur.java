@@ -53,9 +53,6 @@ public class Analyseur{
         }
         
         Resultat infos= resultats.get(0);
-        System.out.println("Taille du tab : "+infos.getTailleTab());
-        System.out.println("Nombre de désordre : "+infos.getDesordre());
-        System.out.println("Type de désordre : "+infos.getTypeDesordre());
          
         for(Resultat r : resultats){
             System.out.println("\n");

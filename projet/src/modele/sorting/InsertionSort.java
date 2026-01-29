@@ -22,6 +22,6 @@ public class InsertionSort extends AbstractSort{
 
     @Override
     public String getName() {
-        return "Insertion Sort";
+        return "InsertionSort";
     }
 }

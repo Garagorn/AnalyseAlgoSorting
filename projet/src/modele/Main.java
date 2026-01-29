@@ -4,7 +4,6 @@ import java.util.*;
 
 import generateur.generator;
 import modele.sorting.*;
-import sorting.Resultat;
 import analyseur.Analyseur;
 
 public class Main{
@@ -29,7 +28,6 @@ public class Main{
         int desordre = 50;
         int typeDesordre = 1;
         int[] tabOriginal = generator.tabgenerersimple(150, 50, 1);
-        List<Resultat> resultats = new ArrayList<>();
         
         /**
          * CountingSort
@@ -38,7 +36,6 @@ public class Main{
         Sort s = new CountingSort();
         s.sort(tabCopie1);
         //Verification tri
-        resultats.add(new Resultat(s.getName(),taille,desordre,typeDesordre,s.getNbrAccesses(),s.getNbrComparisons(), s.getNbrSwaps(),s.getTimeNano()));
         
         /**
          * QuickSort
@@ -47,7 +44,7 @@ public class Main{
         Sort q = new QuickSort();
         q.sort(tabCopie2);
         //Verification tri
-        resultats.add(new Resultat(q.getName(),taille,desordre,typeDesordre,q.getNbrAccesses(),q.getNbrComparisons(), q.getNbrSwaps(),q.getTimeNano()));
+
         /**
          * InsertionSort
          */
@@ -55,7 +52,6 @@ public class Main{
         Sort in = new InsertionSort();
         in.sort(tabCopie3);
         //Verification tri
-        resultats.add(new Resultat(in.getName(),taille,desordre,typeDesordre,in.getNbrAccesses(),in.getNbrComparisons(), in.getNbrSwaps(),in.getTimeNano()));
 
         /**
          * BubbleSort
@@ -64,18 +60,14 @@ public class Main{
         Sort b = new BubbleSort();
         b.sort(tabCopie4);
         //Verification tri
-        resultats.add(new Resultat(b.getName(),taille,desordre,typeDesordre,b.getNbrAccesses(),b.getNbrComparisons(), b.getNbrSwaps(),b.getTimeNano()));
+
         /**
          * MergeSort
+         */
         int[] tabCopie5 = Arrays.copyOf(tabOriginal, tabOriginal.length);
         Sort m = new InsertionSort();
         m.sort(tabCopie5);
         //Verification tri
-        resultats.add(new Resultat(m.getName(),taille,desordre,typeDesordre,m.getNbrAccesses(),m.getNbrComparisons(), m.getNbrSwaps(),m.getTimeNano()));
-        */
-        
-        
-        Analyseur analyse=new Analyseur(resultats);
-        System.out.println(analyse);
+     
     }
 }

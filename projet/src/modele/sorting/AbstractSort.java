@@ -3,9 +3,9 @@ package modele.sorting;
 
 public abstract class AbstractSort implements Sort{
 
-    protected int nbrComparisons;
-    protected int nbrAccesses;
-    protected int nbrSwaps;
+    protected long nbrComparisons;
+    protected long nbrAccesses;
+    protected long nbrSwaps;
     protected long timeNano;
 
 
@@ -62,17 +62,17 @@ public abstract class AbstractSort implements Sort{
     public abstract String getName();
 
     @Override
-    public int getNbrComparisons(){
+    public long getNbrComparisons(){
         return this.nbrComparisons;
     }
 
     @Override
-    public int getNbrAccesses(){
+    public long getNbrAccesses(){
         return this.nbrAccesses;
     }
 
     @Override
-    public int getNbrSwaps(){
+    public long getNbrSwaps(){
         return this.nbrSwaps;
     }
 
@@ -80,10 +80,4 @@ public abstract class AbstractSort implements Sort{
     public long getTimeNano(){
         return this.timeNano;
     }
-
-
-
-
-
-
 }
