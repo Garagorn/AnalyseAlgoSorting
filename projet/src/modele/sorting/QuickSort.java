@@ -1,5 +1,6 @@
-package sorting;
+package modele.sorting;
 import java.util.Random;
+import modele.SortingModel;
 
 public class QuickSort extends AbstractSort{
     private Random random;
@@ -9,8 +10,8 @@ public class QuickSort extends AbstractSort{
         return "QuickSort";
     }
 
-    public QuickSort(){
-        super();
+    public QuickSort(SortingModel model){
+        super(model);
         this.random = new Random();
     }
 
@@ -26,22 +27,34 @@ public class QuickSort extends AbstractSort{
      * @param dernier Dernier element du tableau
      * @return int Nouvelle place du pivot
      */
-    public int partitionner(int[] data,int premier,int dernier){
+    public int partitionner(int[] data, int premier, int dernier){
+
         int pivotIndex = premier + random.nextInt(dernier - premier + 1);
+
+        // Mise en évidence du choix du pivot
         swap(data, pivotIndex, dernier);
+
         int pivot = read(data, dernier);
         int i = premier - 1;
 
-        for(int j=premier; j<=dernier-1;j++){
+        for(int j = premier; j <= dernier - 1; j++){
+
+            setCompareIndices(j, dernier);
+
             int val = read(data, j);
-            if (isLessEqual(val, pivot) && !isLessEqual(pivot, val)){
+
+            if (isLessEqual(val, pivot)) {
                 i++;
                 swap(data, i, j);
             }
         }
-        swap(data,i+1,dernier);
-        return i+1;
+
+        // Placement final du pivot
+        swap(data, i + 1, dernier);
+
+        return i + 1;
     }
+
 
     /**
      * Execution de quicksort
@@ -49,6 +62,7 @@ public class QuickSort extends AbstractSort{
      * @param premier Premier element du tableau
      * @param dernier Dernier element du tableau
      */
+
     public void quicksort(int[] data, int premier,int dernier){
         if(premier<dernier){
             int pivot = partitionner(data,premier,dernier);
@@ -59,7 +73,15 @@ public class QuickSort extends AbstractSort{
     }
     
     protected boolean isLessEqual(int a, int b) {
+        super.updateTime();
         this.nbrComparisons++;
+        if (lastCompareIndex1 != -1 && lastCompareIndex2 != -1) {
+            model.updateVisualization(
+                lastCompareIndex1,
+                lastCompareIndex2,
+                "compare"
+            );
+        }
         return a <= b;
     }
 }

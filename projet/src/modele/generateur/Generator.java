@@ -1,4 +1,4 @@
-package generateur;
+package modele.generateur;
 
 import java.util.*;
 import java.util.Collections;

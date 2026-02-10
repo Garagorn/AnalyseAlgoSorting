@@ -1,4 +1,5 @@
-package sorting;
+package modele.sorting;
+import modele.SortingModel;
 
 /**
  * @author siaghi231
@@ -27,6 +28,9 @@ package sorting;
  */
 public class MergeSort extends AbstractSort {
     
+    public MergeSort(SortingModel model){
+        super(model);
+    }
     @Override
     public String getName() {
         return "MergeSort";
@@ -100,7 +104,10 @@ public class MergeSort extends AbstractSort {
         
         // Fusionner les tableaux temporaires dans array[left..right]
         while (i < n1 && j < n2) {
-            // Comparer les éléments et prendre le plus petit
+
+            // Annonce la comparaison visuelle
+            setCompareIndices(left + i, mid + 1 + j);
+
             if (isLess(leftArray[i], rightArray[j]) || leftArray[i] == rightArray[j]) {
                 write(array, k, leftArray[i]);
                 i++;

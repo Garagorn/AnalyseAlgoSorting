@@ -1,7 +1,10 @@
-package sorting;
-
+package modele.sorting;
+import modele.SortingModel;
 public class CountingSort extends AbstractSort {
-
+    
+    public CountingSort(SortingModel model){
+        super(model);
+    }
     @Override
     public String getName() {
         return "CountingSort";

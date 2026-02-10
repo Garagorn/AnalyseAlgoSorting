@@ -1,6 +1,6 @@
-package event;
+package  modele.event;
 
-interface EcouteurModele{
+public interface EcouteurModele{
     void modeleMiseAJour(Object source);
 
 }

@@ -1,4 +1,4 @@
-package  event;
+package  modele.event;
 import java.util.ArrayList;
 
 public abstract class AbstractModeleEcoutable  implements ModeleEcoutable{

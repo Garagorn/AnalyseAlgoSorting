@@ -1,10 +1,10 @@
-package sorting;
-
+package modele.sorting;
+import modele.SortingModel;
 
 public class BubbleSort extends AbstractSort{
     
-    public BubbleSort(){
-        super();
+    public BubbleSort(SortingModel model){
+        super(model);
     }
 
     @Override
@@ -16,6 +16,7 @@ public class BubbleSort extends AbstractSort{
             swapped = false;
 
             for (int j = 0; j < n - 1 - i; j++) {
+                setCompareIndices(j, j + 1);
                 if (isLess(read(array, j + 1), read(array, j))) {
                     swap(array, j, j + 1);
                     swapped = true;

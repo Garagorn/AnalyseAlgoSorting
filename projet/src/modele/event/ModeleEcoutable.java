@@ -1,7 +1,7 @@
 
-package  event;
+package  modele.event;
 
-interface ModeleEcoutable {
+public interface ModeleEcoutable {
     void ajouterEcouteur(EcouteurModele e);
     void retirerEcouteur(EcouteurModele e);
         
