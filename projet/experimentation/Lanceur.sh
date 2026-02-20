@@ -1,27 +1,38 @@
 #!/bin/bash
+#Lancer l'expérimentation
+# bash Lanceur.sh <dossier> expe
 
-expe=1   # 1 = lancer les expérimentations, 0 = ne rien faire
+# Lancer l'agrégation
+# bash Lanceur.sh <dossier> aggr
 
-# Placement dans build
-cd ..
-ant compile
-cd experimentation/
+# Lancer les deux
+#  bash Lanceur.sh <dossier> tout
+#100 500 1000 5000 10000 25000 50000 75000
+TAILLES=(100000)
+dossier=$1
+mode=$2
 
-# Dossiers de résultat
-mkdir -p resultats
-cd resultats 
-rm -f size_*.csv
-cd ..
+if [ -z "$dossier" ] || [ -z "$mode" ]; then
+    echo "Usage : bash Lanceur.sh <dossier> <expe|aggr|tout>"
+    exit 1
+fi
 
-echo "Lancement de l'experimentation"
+if [ "$mode" = "expe" ] || [ "$mode" = "tout" ]; then
+    cd ..
+    ant compile
+    cd experimentation/
 
-if [ "$expe" -eq 1 ]; then
-    bash experimentation_1.sh || exit 1
-    bash experimentation_2.sh || exit 1
-    bash experimentation_3.sh || exit 1
-    bash experimentation_4.sh || exit 1
-    bash experimentation_5.sh || exit 1
+    mkdir -p "$dossier"
 
-    wait
+    echo "Lancement des experimentations"
+    for taille in "${TAILLES[@]}"; do
+        bash experimentation.sh $taille $dossier || exit 1
+    done
     echo "Toutes les expérimentations sont terminées"
+fi
+
+if [ "$mode" = "aggr" ] || [ "$mode" = "tout" ]; then
+    echo "- - Debut de l'aggregation par algorithme - - -"
+    bash Aggregation.sh "$dossier" "$dossier/algos"
+    echo "- - Fin de l'aggregation par algorithme - - -"
 fi

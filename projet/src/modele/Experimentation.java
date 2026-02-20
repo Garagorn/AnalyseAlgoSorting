@@ -31,57 +31,61 @@ public class Experimentation {
         int pourcentage = Integer.parseInt(args[1]);
         int typeDesordre = Integer.parseInt(args[2]);
 
-        int[] tab = Generator.generateurTab(taille,pourcentage,typeDesordre);
+        for(int i=0;i<100;i++){
+            
+            //Nouvelle graine aléatoire
+            int[] tab = Generator.generateurTab(taille,pourcentage,typeDesordre);
         
-        // - - - Tris du tableau - - -
-        /**
-         * CountingSort
-         */
-        int[] tabCopie1 = Arrays.copyOf(tab, tab.length);
-        Sort s = new CountingSort();
-        s.sort(tabCopie1);
-        if(isSorted(tabCopie1)){ 
-            System.out.println("[csv] "+s.getName()+","+s.getNbrAccesses()+","+s.getNbrComparisons()+","+s.getNbrSwaps()+","+s.getTimeNano());
-        }
-            
-        /**
-         * QuickSort
-         */
-        int[] tabCopie2 = Arrays.copyOf(tab, tab.length);
-        Sort q = new QuickSort();
-        q.sort(tabCopie2);
-        if(isSorted(tabCopie2)){
-            System.out.println("[csv] "+q.getName()+","+q.getNbrAccesses()+","+q.getNbrComparisons()+","+q.getNbrSwaps()+","+q.getTimeNano());
-        }
+            // Copie des tableaux
+            int[] tabCopie1 = Arrays.copyOf(tab, tab.length);
+            int[] tabCopie2 = Arrays.copyOf(tab, tab.length);
+            int[] tabCopie3 = Arrays.copyOf(tab, tab.length);
+            int[] tabCopie4 = Arrays.copyOf(tab, tab.length);
+            int[] tabCopie5 = Arrays.copyOf(tab, tab.length);
 
-        /**
-         * InsertionSort
-         */
-        int[] tabCopie3 = Arrays.copyOf(tab, tab.length);
-        Sort in = new InsertionSort();
-        in.sort(tabCopie3);
-        if(isSorted(tabCopie3)){
-            System.out.println("[csv] "+in.getName()+","+in.getNbrAccesses()+","+in.getNbrComparisons()+","+in.getNbrSwaps()+","+in.getTimeNano());
-        }
+            Sort s  = new CountingSort();
+            Sort q  = new QuickSort();
+            Sort in = new InsertionSort();
+            Sort b  = new BubbleSort();
+            Sort m  = new MergeSort();
 
-        /**
-         * BubbleSort
-         */
-        int[] tabCopie4 = Arrays.copyOf(tab, tab.length);
-        Sort b = new BubbleSort();
-        b.sort(tabCopie4);
-        if(isSorted(tabCopie4)){
-            System.out.println("[csv] "+b.getName()+","+b.getNbrAccesses()+","+b.getNbrComparisons()+","+b.getNbrSwaps()+","+b.getTimeNano());
+            // Création des threads
+            Thread t1 = new Thread(() -> s.sort(tabCopie1));
+            Thread t2 = new Thread(() -> q.sort(tabCopie2));
+            Thread t3 = new Thread(() -> in.sort(tabCopie3));
+            Thread t4 = new Thread(() -> b.sort(tabCopie4));
+            Thread t5 = new Thread(() -> m.sort(tabCopie5));
+
+            // Démarrer les threads
+            t1.start();
+            t2.start();
+            t3.start();
+            t4.start();
+            t5.start();
+
+            // Attendre que tous les threads soient terminés
+            try {
+                t1.join();
+                t2.join();
+                t3.join();
+                t4.join();
+                t5.join();
+            } catch (InterruptedException e) {
+                System.err.println("Thread interrompu : " + e.getMessage());
+            }
+
+            // Affichage une fois les tris finis
+            if(isSorted(tabCopie1))
+                System.out.println("[csv] "+s.getName()+";"+s.getNbrAccesses()+";"+s.getNbrComparisons()+";"+s.getNbrSwaps()+";"+s.getTimeNano());
+            if(isSorted(tabCopie2))
+                System.out.println("[csv] "+q.getName()+";"+q.getNbrAccesses()+";"+q.getNbrComparisons()+";"+q.getNbrSwaps()+";"+q.getTimeNano());
+            if(isSorted(tabCopie3))
+                System.out.println("[csv] "+in.getName()+";"+in.getNbrAccesses()+";"+in.getNbrComparisons()+";"+in.getNbrSwaps()+";"+in.getTimeNano());
+            if(isSorted(tabCopie4))
+                System.out.println("[csv] "+b.getName()+";"+b.getNbrAccesses()+";"+b.getNbrComparisons()+";"+b.getNbrSwaps()+";"+b.getTimeNano());
+            if(isSorted(tabCopie5))
+                System.out.println("[csv] "+m.getName()+";"+m.getNbrAccesses()+";"+m.getNbrComparisons()+";"+m.getNbrSwaps()+";"+m.getTimeNano());
         }
-            
-        /**
-         * MergeSort
-         */
-        int[] tabCopie5 = Arrays.copyOf(tab, tab.length);
-        Sort m = new MergeSort();
-        m.sort(tabCopie5);
-        if(isSorted(tabCopie5)){
-            System.out.println("[csv] "+m.getName()+","+m.getNbrAccesses()+","+m.getNbrComparisons()+","+m.getNbrSwaps()+","+m.getTimeNano());
-        }
+        
     }
 }
