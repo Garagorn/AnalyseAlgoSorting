@@ -1,37 +1,24 @@
 package modele;
 
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 import modele.SortingModel;
 import controleur.SortingController;
 import vue.MainFrame;
 
-/**
- * Point d'entrée de l'application d'analyse d'algorithmes de tri
- */
+/** Point d'entrée de l'application de visualisation des algorithmes de tri. */
 public class Main {
-    
+
+     /**
+     * Point d'entrée de l'application.
+     *
+     * @param args arguments de la ligne de commande (non utilisés)
+     */
     public static void main(String[] args) {
-        // Utiliser le Look and Feel du système
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            // Si échec, utiliser le Look and Feel par défaut
-            e.printStackTrace();
-        }
-        
-        // Lancer l'interface sur l'Event Dispatch Thread
         SwingUtilities.invokeLater(() -> {
-            // Créer le modèle
-            SortingModel model = new SortingModel();
-            
-            // Créer le contrôleur
+            SortingModel      model      = new SortingModel();
             SortingController controller = new SortingController(model);
-            
-            // Créer et afficher la fenêtre principale
-            MainFrame frame = new MainFrame(model, controller);
+            MainFrame         frame      = new MainFrame(model, controller);
             frame.setVisible(true);
-            
-            System.out.println("Application démarrée avec succès!");
         });
     }
 }

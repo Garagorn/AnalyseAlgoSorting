@@ -1,87 +1,63 @@
-import generateur.Generator;
-import sorting.*;
-import java.util.*;
+package modele;
+
+import modele.generateur.Generator;
+import modele.sorting.*;
+
 /**
+ * Outil de benchmarking hors interface graphique.
  *
- * @author tellier212
+ * Lance chaque algorithme sur plusieurs tailles de tableau et affiche
+ * les métriques (comparaisons, accès, échanges, temps) dans la console.
+ * Utilise un SortingModel sans visualisation (vitesse = 0, pas de vues abonnées).
  */
 public class Experimentation {
-    
-    private static boolean isSorted(int[] tab){
-        for(int i = 0; i < tab.length - 1; i++){
-            if(tab[i] > tab[i + 1]){
-                return false;
-            } 
-        }
-        return true;
-    }
 
-    public static void main(String[] args){
-    //Arguments : Taille Desordre typeDesordre
-    
-        if(args.length > 3){
-            System.out.println("Il y a trop d'arguments");
-            
-        }
-        if(args.length < 3){
-            System.out.println("Il manque des arguements");
-        }
+    private static final int[] SIZES           = {100, 500, 1000, 5000};
+    private static final int   DISORDER_PCT    = 50;
+    private static final int   DISORDER_MODE   = 1;
 
-        int taille = Integer.parseInt(args[0]);
-        int pourcentage = Integer.parseInt(args[1]);
-        int typeDesordre = Integer.parseInt(args[2]);
+    /**
+     * Point d'entrée de l'application de benchmark.
+     *
+     * Pour chaque algorithme, génère des tableaux d'entiers de tailles différentes,
+     * exécute le tri, et affiche les métriques dans la console.
+     *
+     * @param args arguments de la ligne de commande (non utilisés)
+     */
+    public static void main(String[] args) {
+        SortingModel benchModel = new SortingModel();
+        benchModel.setVisualizationSpeed(0);
 
-        int[] tab = Generator.generateurTab(taille,pourcentage,typeDesordre);
-        
-        // - - - Tris du tableau - - -
-        /**
-         * CountingSort
-         */
-        int[] tabCopie1 = Arrays.copyOf(tab, tab.length);
-        Sort s = new CountingSort();
-        s.sort(tabCopie1);
-        if(isSorted(tabCopie1)){ 
-            System.out.println("[csv] "+s.getName()+","+s.getNbrAccesses()+","+s.getNbrComparisons()+","+s.getNbrSwaps()+","+s.getTimeNano());
-        }
-            
-        /**
-         * QuickSort
-         */
-        int[] tabCopie2 = Arrays.copyOf(tab, tab.length);
-        Sort q = new QuickSort();
-        q.sort(tabCopie2);
-        if(isSorted(tabCopie2)){
-            System.out.println("[csv] "+q.getName()+","+q.getNbrAccesses()+","+q.getNbrComparisons()+","+q.getNbrSwaps()+","+q.getTimeNano());
-        }
+        AbstractSort[] algorithms = {
+            new BubbleSort(benchModel),
+            new InsertionSort(benchModel),
+            new QuickSort(benchModel),
+            new MergeSort(benchModel),
+            new CountingSort(benchModel)
+        };
 
-        /**
-         * InsertionSort
-         */
-        int[] tabCopie3 = Arrays.copyOf(tab, tab.length);
-        Sort in = new InsertionSort();
-        in.sort(tabCopie3);
-        if(isSorted(tabCopie3)){
-            System.out.println("[csv] "+in.getName()+","+in.getNbrAccesses()+","+in.getNbrComparisons()+","+in.getNbrSwaps()+","+in.getTimeNano());
-        }
+        System.out.printf("%-16s %8s %12s %12s %12s %12s%n",
+            "Algorithme", "Taille", "Comparaisons", "Accès", "Échanges", "Temps (ms)");
+        System.out.println("-".repeat(76));
 
-        /**
-         * BubbleSort
-         */
-        int[] tabCopie4 = Arrays.copyOf(tab, tab.length);
-        Sort b = new BubbleSort();
-        b.sort(tabCopie4);
-        if(isSorted(tabCopie4)){
-            System.out.println("[csv] "+b.getName()+","+b.getNbrAccesses()+","+b.getNbrComparisons()+","+b.getNbrSwaps()+","+b.getTimeNano());
-        }
-            
-        /**
-         * MergeSort
-         */
-        int[] tabCopie5 = Arrays.copyOf(tab, tab.length);
-        Sort m = new MergeSort();
-        m.sort(tabCopie5);
-        if(isSorted(tabCopie5)){
-            System.out.println("[csv] "+m.getName()+","+m.getNbrAccesses()+","+m.getNbrComparisons()+","+m.getNbrSwaps()+","+m.getTimeNano());
+        for (AbstractSort algorithm : algorithms) {
+            for (int size : SIZES) {
+                int[] array = Generator.generate(size, DISORDER_PCT, DISORDER_MODE);
+                benchModel.setCurrentSort(algorithm);
+
+                algorithm.sort(array);
+
+                double timeMs = algorithm.getTimeNano() / 1_000_000.0;
+                System.out.printf("%-16s %8d %12d %12d %12d %12.2f%n",
+                    algorithm.getName(),
+                    size,
+                    algorithm.getNbrComparisons(),
+                    algorithm.getNbrAccesses(),
+                    algorithm.getNbrSwaps(),
+                    timeMs
+                );
+            }
+            System.out.println();
         }
     }
 }

@@ -1,116 +1,137 @@
 package modele.generateur;
 
-import java.util.*;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
-public class Generator{
-    private int taille;
-    private int[] tab;
-    private int pourcentageAleatoire;
-    private int desordre;
+/**
+ * Génère des tableaux d'entiers [0..n-1] partiellement désordonnés selon quatre modes :
+ *   1 = positions aléatoires dans tout le tableau
+ *   2 = désordre en début de tableau
+ *   3 = désordre au milieu du tableau
+ *   4 = désordre en fin de tableau
+ */
+public class Generator {
 
-    public Generator(int taille, int pourcentageAleatoire){
-        this.taille= taille;
-        this.pourcentageAleatoire = pourcentageAleatoire;
+    /** Taille du tableau à générer. */
+    private int size;
+
+    /** Pourcentage d'éléments à mélanger. */
+    private int disorderPercentage;
+
+    /**
+     * Construit un générateur avec taille et pourcentage de désordre.
+     *
+     * @param size taille du tableau
+     * @param disorderPercentage pourcentage d'éléments à mélanger
+     */
+    public Generator(int size, int disorderPercentage) {
+        this.size = size;
+        this.disorderPercentage = disorderPercentage;
     }
-    public static int getNombreAleatoire(int taille, int pourcentageAleatoire){
-        if(pourcentageAleatoire>100 || pourcentageAleatoire<0){
-            throw new IllegalArgumentException("illegal pourcentage");
+
+    /**
+     * Calcule le nombre d'éléments à mélanger à partir de la taille et du pourcentage.
+     * @param size taille du tableau
+     * @param disorderPercentage pourcentage d'éléments à mélanger (0-100)
+     * @return nombre d'éléments à mélanger
+     * @throws IllegalArgumentException si le pourcentage est hors de [0, 100]
+     */
+    public static int computeShuffleCount(int size, int disorderPercentage) {
+        if (disorderPercentage < 0 || disorderPercentage > 100) {
+            throw new IllegalArgumentException("Le pourcentage doit être compris entre 0 et 100.");
         }
-        int res =taille* pourcentageAleatoire/100;
-        return res;
+        return size * disorderPercentage / 100;
     }
-    public static int[] generateurTab(int taille,int pourcentageAleatoire,int desordre){
-        int nombreAleatoire=getNombreAleatoire(taille,pourcentageAleatoire);
-        int[] tab =new int[taille];
+
+    /**
+     * Génère un tableau d'entiers [0..size-1] partiellement mélangé.
+     *
+     * @param size               nombre d'éléments
+     * @param disorderPercentage pourcentage d'éléments à mélanger (0-100)
+     * @param disorderMode       mode de désordre (1 à 4)
+     * @return tableau partiellement désordonné
+     */
+    public static int[] generate(int size, int disorderPercentage, int disorderMode) {
+        int shuffleCount = computeShuffleCount(size, disorderPercentage);
+        int[] array = new int[size];
         Random rand = new Random();
 
-        for(int i=0;i<taille;i++){
-            tab[i]=i;
+        for (int i = 0; i < size; i++) {
+            array[i] = i;
         }
-        if(desordre==1){
-            List<Integer> tabChangement=new ArrayList<>();
-            List<Integer> indices=new ArrayList<>();
-            for(int i=0;i<nombreAleatoire;i++){
-                int aleatoire= rand.nextInt(taille);
-                while(indices.contains(aleatoire)){
-                    aleatoire= rand.nextInt(taille);
-                }
-                indices.add(aleatoire);
-                tabChangement.add(tab[aleatoire]);
-            }
-            MelangeurShuffle(tabChangement);
-            for(int i=0;i<nombreAleatoire;i++){
-                tab[indices.get(i)]=tabChangement.get(i);
-            }
-        }
-        if(desordre==2){
-            List<Integer> tabChangement=new ArrayList<>();
-            for(int i=0;i<nombreAleatoire;i++){
-                tabChangement.add(tab[i]);
-            }
-            MelangeurShuffle(tabChangement);
-            for(int i=0;i<nombreAleatoire;i++){
-                tab[i]=tabChangement.get(i);
-            }
-            
-        }
-        if(desordre==3){
-            int debut = Math.max(0, (taille / 2) - (nombreAleatoire / 2));
-            int j=0;
-            List<Integer> tabChangement=new ArrayList<>();
-            for(int i=0;i<nombreAleatoire;i++){
-                j=debut+i;
-                tabChangement.add(tab[j]);
-            }
-            MelangeurShuffle(tabChangement);
-            for(int i=0;i<nombreAleatoire;i++){
-                j=debut+i;
-                tab[j]=tabChangement.get(i);
-            }
-            
-        }
-        if(desordre==4){
-            int zonefin = nombreAleatoire;
-            int startfin = taille - zonefin;
-            int j=0;
-            List<Integer> tabChangement=new ArrayList<>();
-            for(int i=0;i<nombreAleatoire;i++){
-                j=startfin+i;
-                tabChangement.add(tab[j]);
-            }
-            MelangeurShuffle(tabChangement);
-            for(int i=0;i<nombreAleatoire;i++){
-                j=startfin+i;
-                tab[j]=tabChangement.get(i);
-            }
-        }
-        return tab;
 
-    }
-    public static void MelangeurShuffle(List tab){
-        Collections.shuffle(tab);
-    }
-    
-    private static void afficher(int[] tab){
-        for(int val:tab){
-            System.out.print(val+" ");
+        switch (disorderMode) {
+            case 1 -> shuffleRandomPositions(array, shuffleCount, rand);
+            case 2 -> shuffleRange(array, 0, shuffleCount);
+            case 3 -> {
+                int start = Math.max(0, (size / 2) - (shuffleCount / 2));
+                shuffleRange(array, start, shuffleCount);
+            }
+            case 4 -> shuffleRange(array, size - shuffleCount, shuffleCount);
         }
-        System.out.println();
-    }
-    public static void main(String[] args){
-        System.out.println("désordre aleatoire (1) :");
-        afficher(generateurTab(150,50,1));
 
-        System.out.println("désordre début (2) :");
-        afficher(generateurTab(150,50,2));
-
-        System.out.println("désordre milieu (3) :");
-        afficher(generateurTab(150,50,3));
-
-        System.out.println("désordre fin (4) :");
-        afficher(generateurTab(150,50,4));
+        return array;
     }
 
+    /** Mélange shuffleCount éléments à des positions aléatoires distinctes dans le tableau. 
+     * 
+     * @param array tableau
+     * @param shuffleCount nombre d'éléments à mélanger
+     * @param rand générateur aléatoire
+     */
+    private static void shuffleRandomPositions(int[] array, int shuffleCount, Random rand) {
+        List<Integer> pickedIndices = new ArrayList<>();
+        List<Integer> pickedValues  = new ArrayList<>();
+
+        while (pickedIndices.size() < shuffleCount) {
+            int idx = rand.nextInt(array.length);
+            if (!pickedIndices.contains(idx)) {
+                pickedIndices.add(idx);
+                pickedValues.add(array[idx]);
+            }
+        }
+
+        shuffleSubList(pickedValues);
+        for (int i = 0; i < shuffleCount; i++) {
+            array[pickedIndices.get(i)] = pickedValues.get(i);
+        }
+    }
+
+    /** Mélange count éléments consécutifs à partir de startIndex. 
+     *
+     * @param array tableau
+     * @param startIndex index de départ
+     * @param count nombre d'éléments à mélanger
+     */
+    private static void shuffleRange(int[] array, int startIndex, int count) {
+        List<Integer> segment = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            segment.add(array[startIndex + i]);
+        }
+        shuffleSubList(segment);
+        for (int i = 0; i < count; i++) {
+            array[startIndex + i] = segment.get(i);
+        }
+    }
+
+    /**
+     * Mélange aléatoirement une liste en place.
+     *
+     * @param list liste à mélanger
+     */
+    public static void shuffleSubList(List<Integer> list) {
+        Collections.shuffle(list);
+    }
+
+    /* Point d'entrée de démonstration. 
+    public static void main(String[] args) {
+        for (int mode = 1; mode <= 4; mode++) {
+            System.out.println("Mode " + mode + " :");
+            int[] result = generate(20, 50, mode);
+            for (int v : result) System.out.print(v + " ");
+            System.out.println();
+        }
+    }*/
 }
