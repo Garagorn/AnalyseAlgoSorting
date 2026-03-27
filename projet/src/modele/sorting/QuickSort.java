@@ -1,65 +1,98 @@
-package sorting;
-import java.util.Random;
+package modele.sorting;
 
-public class QuickSort extends AbstractSort{
-    private Random random;
-    
+import java.util.Random;
+import modele.SortingModel;
+
+/**
+ * Tri rapide (Quick Sort) avec pivot aléatoire.
+ *
+ * Partitionne récursivement le tableau autour d'un pivot choisi aléatoirement,
+ * ce qui réduit le risque d'atteindre le pire cas O(n²).
+ *
+ * Complexité : O(n log n) en moyenne, O(n²) pire cas (rare avec pivot aléatoire).
+ * En place, non stable. Espace auxiliaire O(log n) pour la pile d'appels.
+ */
+public class QuickSort extends AbstractSort {
+
+    /** Générateur de nombres aléatoires pour le choix du pivot. */
+    private final Random random = new Random();
+
+     /**
+     * Construit un tri rapide.
+     *
+     * @param model modèle de visualisation
+     */
+    public QuickSort(SortingModel model) {
+        super(model);
+    }
+
     @Override
     public String getName() {
         return "QuickSort";
     }
 
-    public QuickSort(){
-        super();
-        this.random = new Random();
+    /**
+     * Lance le tri rapide.
+     *
+     * @param array tableau à trier
+     */
+    @Override
+    public void sortImpl(int[] array) {
+        quicksort(array, 0, array.length - 1);
     }
 
-    @Override
-    public void sortImpl(int[] array){
-        quicksort(array,0,array.length-1);
+    /** Trie récursivement le sous-tableau array[low..high]. 
+     *
+     * @param array tableau
+     * @param low index de début
+     * @param high index de fin
+     */
+    private void quicksort(int[] array, int low, int high) {
+        if (low < high) {
+            int pivotIndex = partition(array, low, high);
+            quicksort(array, low, pivotIndex - 1);
+            quicksort(array, pivotIndex + 1, high);
+        }
     }
 
     /**
-     * Algorithme  de partionnement 
-     * @param data Tableau à partitionner
-     * @param premier Premier element du tableau
-     * @param dernier Dernier element du tableau
-     * @return int Nouvelle place du pivot
+     * Partitionne array[low..high] autour d'un pivot aléatoire.
+     * @param array tableau
+     * @param low index de début
+     * @param high index de fin
+     * @return l'indice définitif du pivot après partitionnement.
      */
-    public int partitionner(int[] data,int premier,int dernier){
-        int pivotIndex = premier + random.nextInt(dernier - premier + 1);
-        swap(data, pivotIndex, dernier);
-        int pivot = read(data, dernier);
-        int i = premier - 1;
+    private int partition(int[] array, int low, int high) {
+        int pivotIndex = low + random.nextInt(high - low + 1);
+        swap(array, pivotIndex, high);
+        int pivot = read(array, high);
 
-        for(int j=premier; j<=dernier-1;j++){
-            int val = read(data, j);
-            if (isLessEqual(val, pivot) && !isLessEqual(pivot, val)){
-                i++;
-                swap(data, i, j);
+        int insertionPoint = low - 1;
+        for (int j = low; j < high; j++) {
+            setCompareIndices(j, high);
+            if (isLessOrEqual(read(array, j), pivot)) {
+                insertionPoint++;
+                swap(array, insertionPoint, j);
             }
         }
-        swap(data,i+1,dernier);
-        return i+1;
+        swap(array, insertionPoint + 1, high);
+        return insertionPoint + 1;
     }
 
     /**
-     * Execution de quicksort
-     * @param data Tableau à trier
-     * @param premier Premier element du tableau
-     * @param dernier Dernier element du tableau
+     * Retourne true si a est inférieur ou égale à b. Même comportement que isLess mais inclut l'égalité.
+     * Nécessaire pour le partitionnement du Quick Sort.
+     * @param a première valeur
+     * @param b seconde valeur
+     * @return true si a est inférieur ou égal à b, false sinon
      */
-    public void quicksort(int[] data, int premier,int dernier){
-        if(premier<dernier){
-            int pivot = partitionner(data,premier,dernier);
-        
-            quicksort(data,premier,pivot-1);
-            quicksort(data,pivot+1,dernier);
-        }
-    }
-    
-    protected boolean isLessEqual(int a, int b) {
+    protected boolean isLessOrEqual(int a, int b) {
+        if (Thread.currentThread().isInterrupted()) return false;
+        updateTime();
         this.nbrComparisons++;
+        if (lastCompareIndex1 != -1 && lastCompareIndex2 != -1) {
+            model.updateVisualization(lastCompareIndex1, lastCompareIndex2, "compare");
+        }
         return a <= b;
     }
 }

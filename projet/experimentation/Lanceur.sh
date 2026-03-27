@@ -7,8 +7,7 @@
 
 # Lancer les deux
 #  bash Lanceur.sh <dossier> tout
-#100 500 1000 5000 10000 25000 50000 75000
-TAILLES=(100000)
+TAILLES=(100 500 1000 5000 10000 25000 50000 75000 100000)
 dossier=$1
 mode=$2
 
