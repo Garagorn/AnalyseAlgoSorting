@@ -1,5 +1,7 @@
-import generateur.Generator;
-import sorting.*;
+package modele;
+
+import modele.generateur.Generator;
+import modele.sorting.*;
 import java.util.*;
 /**
  *
@@ -49,11 +51,11 @@ public class Experimentation {
             int[] tabCopie4 = Arrays.copyOf(tab, tab.length);
             int[] tabCopie5 = Arrays.copyOf(tab, tab.length);
 
-            Sort s  = new CountingSort();
-            Sort q  = new QuickSort();
-            Sort in = new InsertionSort();
-            Sort b  = new BubbleSort();
-            Sort m  = new MergeSort();
+            Sort s  = new CountingSort(null);
+            Sort q  = new QuickSort(null);
+            Sort in = new InsertionSort(null);
+            Sort b  = new BubbleSort(null);
+            Sort m  = new MergeSort(null);
 
             // Création des threads
             Thread t1 = new Thread(() -> s.sort(tabCopie1));
@@ -95,4 +97,3 @@ public class Experimentation {
         
     }
 }
-

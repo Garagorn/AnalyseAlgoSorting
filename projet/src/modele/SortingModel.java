@@ -62,14 +62,13 @@ public class SortingModel extends AbstractModeleEcoutable {
     }
 
 
-
     /**
      * Génère un nouveau tableau selon les paramètres courants.
      * L'original est conservé pour permettre un reset ultérieur.
      * Les métriques sont remises à zéro et les vues notifiées.
      */
     public void generateNewArray() {
-        this.originalArray = Generator.generate(arraySize, disorderPercentage, disorderMode);
+        this.originalArray = this.originalArray = Generator.generateurTab(arraySize, disorderPercentage, disorderMode);
         this.currentArray  = Arrays.copyOf(originalArray, originalArray.length);
         resetMetrics();
         fireChangement();

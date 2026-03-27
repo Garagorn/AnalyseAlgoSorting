@@ -82,10 +82,10 @@ public abstract class AbstractSort implements Sort {
      * @return valeur lue ou 0 si interrompu
      */
     protected int read(int[] array, int index) {
-        if (isInterrupted()) return 0;
-        updateTime();
-        model.updateVisualization(index, -1, "read");
         this.nbrAccesses++;
+        if (model != null) {
+            model.updateVisualization(index, -1, "read");
+        }
         return array[index];
     }
 
@@ -97,10 +97,10 @@ public abstract class AbstractSort implements Sort {
      * @param value valeur à écrire
      */
     protected void write(int[] array, int index, int value) {
-        if (isInterrupted()) return;
-        updateTime();
-        model.updateVisualization(index, -1, "write");
         this.nbrAccesses++;
+        if (model != null) {
+            model.updateVisualization(index, -1, "write");
+        }
         array[index] = value;
     }
 
@@ -112,11 +112,9 @@ public abstract class AbstractSort implements Sort {
      * @return true si a est inférieur à b, false sinon ou si interrompu
      */
     protected boolean isLess(int a, int b) {
-        if (isInterrupted()) return false;
-        updateTime();
         this.nbrComparisons++;
-        if (lastCompareIndex1 != -1 && lastCompareIndex2 != -1) {
-            model.updateVisualization(lastCompareIndex1, lastCompareIndex2, "compare");
+        if (model != null) {
+            model.updateVisualization(-1, -1, "compare");
         }
         return a < b;
     }
@@ -129,10 +127,10 @@ public abstract class AbstractSort implements Sort {
      * @param j second index
      */
     protected void swap(int[] array, int i, int j) {
-        if (isInterrupted()) return;
-        updateTime();
-        model.updateVisualization(i, j, "swap");
         this.nbrSwaps++;
+        if (model != null) {
+            model.updateVisualization(i, j, "swap");
+        }
         int tmp = read(array, i);
         write(array, i, read(array, j));
         write(array, j, tmp);
@@ -145,8 +143,9 @@ public abstract class AbstractSort implements Sort {
      * @param j second index
      */
     protected void setCompareIndices(int i, int j) {
-        this.lastCompareIndex1 = i;
-        this.lastCompareIndex2 = j;
+        if (model != null) {
+            model.updateVisualization(i, j, "compare");
+        }
     }
 
     /** Met à jour le temps écoulé. */

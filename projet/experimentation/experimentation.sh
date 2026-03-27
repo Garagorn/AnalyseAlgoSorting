@@ -22,7 +22,7 @@ echo "- - Debut experimentation taille : $1 - - -"
 
             echo "[run] taille=$size pourcentage=$disorder desordre=$type"
             
-			java -cp ../build Experimentation "$size" "$disorder" "$type" > "$sortie" || exit 1
+			java -cp ../build modele.Experimentation "$size" "$disorder" "$type" > "$sortie" || exit 1
          
             # Recupération sortie std java
             grep '^\[csv\]' "$sortie" | while read -r line; do
