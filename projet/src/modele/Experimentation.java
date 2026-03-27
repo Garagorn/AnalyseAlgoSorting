@@ -16,6 +16,12 @@ public class Experimentation {
         return true;
     }
 
+    /**
+     * Outil de benchmarking hors interface graphique.
+     *
+     * Lance chaque algorithme sur plusieurs tailles de tableau et affiche
+     * les métriques (comparaisons, accès, échanges, temps) sur la sortie standard
+     */
     public static void main(String[] args){
     //Arguments : Taille Desordre typeDesordre
     
@@ -89,3 +95,4 @@ public class Experimentation {
         
     }
 }
+
